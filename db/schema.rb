@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_160811) do
   end
 
   create_table "teas", force: :cascade do |t|
+    t.string "title"
     t.string "description"
     t.integer "temperature"
     t.integer "brew_time"

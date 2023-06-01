@@ -51,11 +51,11 @@ group :development, :test do
   gem "vcr" # https://github.com/vcr/vcr
   gem "webmock" # https://github.com/bblimke/webmock
   gem "simplecov"
+  gem "shoulda-matchers", "~> 5.0"
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem "shoulda-matchers", "~> 5.0"
 end
 
