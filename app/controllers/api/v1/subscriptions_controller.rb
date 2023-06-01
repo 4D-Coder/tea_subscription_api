@@ -10,6 +10,12 @@ class Api::V1::SubscriptionsController < ApplicationController
     render json: SubscriptionSerializer.new(subscription), status: 201
   end
 
+  def update
+    subscription = Subscription.find(update_params['id'])
+    subscription.update(status: update_params['status'])
+    render json: SubscriptionSerializer.new(subscription), status: 200
+  end
+
   private
 
   def create_params
@@ -19,6 +25,14 @@ class Api::V1::SubscriptionsController < ApplicationController
       :total_price,
       :frequency,
       :status
+    )
+  end
+
+  def update_params
+    params.permit(
+      :status,
+      :customer_id,
+      :id
     )
   end
 end

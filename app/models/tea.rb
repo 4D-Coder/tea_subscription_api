@@ -1,5 +1,6 @@
 class Tea < ApplicationRecord
-  validates :description,
+  validates :title,
+            :description,
             :temperature,
             :brew_time,
             :unit_price,
