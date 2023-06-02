@@ -19,7 +19,7 @@ class Api::V1::SubscriptionsController < ApplicationController
   def update
     subscription = Subscription.find(update_params['id'])
 
-    if !subscription.status == update_params['status']
+    if subscription.status != update_params['status']
       subscription.update(status: update_params['status'])
       render json: SubscriptionSerializer.new(subscription), status: 200
     else
