@@ -231,6 +231,7 @@ Request: <br>
 | Code | Description |
 | :--- | :--- |
 | 200 | `OK` |
+
 Parameters:
 
 ```json
@@ -312,6 +313,7 @@ Request: <br>
 | Code | Description |
 | :--- | :--- |
 | 200 | `OK` |
+
 Parameters:
 
 ```json
