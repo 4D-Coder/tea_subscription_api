@@ -1,29 +1,32 @@
 class Api::V1::SubscriptionsController < ApplicationController
   def index
-    customer_subscriptions = Subscription.where(customer_id: index_params['customer_id'])
+    begin
+      customer_subscriptions = Subscription.where(customer_id: index_params['customer_id'])
 
-    render json: SubscriptionSerializer.new(customer_subscriptions), status: 200
+      render json: SubscriptionSerializer.new(customer_subscriptions), status: 200
+    end
   end
 
   def create
     subscription = Subscription.new(create_params)
-    subscription.save
-    params['teas'].each do |tea|
-      tea = Tea.find(tea['tea_id'])
-      TeaSubscription.create(subscription_id: subscription.id, tea_id: tea.id)
-    end
 
-    render json: SubscriptionSerializer.new(subscription), status: 201
+    begin
+      subscription.save
+      params['teas'].each do |tea|
+        tea = Tea.find(tea['tea_id'])
+        TeaSubscription.create(subscription_id: subscription.id, tea_id: tea.id)
+      end
+
+      render json: SubscriptionSerializer.new(subscription), status: 201
+    end
   end
 
   def update
     subscription = Subscription.find(update_params['id'])
 
-    if !subscription.status == update_params['status']
+    if subscription.status != update_params['status']
       subscription.update(status: update_params['status'])
       render json: SubscriptionSerializer.new(subscription), status: 200
-    else
-
     end
   end
 
